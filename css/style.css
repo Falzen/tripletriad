@@ -1,0 +1,155 @@
+*, *>* {
+	box-sizing: border-box;
+	padding: 0.1px;
+}
+body {
+	margin: 0;
+	color: #666;
+	background-color: #0f0f0f
+}
+p {
+	margin: 0;
+}
+ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+img {
+	width: 100%;
+}
+
+
+#gameContainer {
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: space-between;
+	background-color: #2f2f2f;
+	width: 890px;
+	height: 680px;
+	margin: 20px auto;
+}
+
+.hand {
+	height: 600px;
+	width: 200px;
+	background-color: lightgreen;
+}
+.hand-container {
+	display: flex;
+	flex-flow: column;
+    width: 133px;
+    height: 430px;
+    margin: 5px auto;
+}
+.one-card {
+	width: 133px;
+	height: 133px;
+	border: 1px solid black;
+	margin: 1px;
+	margin-bottom: -75px;
+	transition: all 0.2s ease;
+}
+.hand .one-card:not(.is-not-selected):hover {
+	margin-bottom: -5px;
+	box-shadow: 0 -5px 12px 0px rgba(0,0,0,0.4);
+}
+
+.hand .one-card.is-selected {
+	margin: 8px 0px;
+	box-shadow: 0 -5px 18px 0px rgba(218, 65, 32, 0.8);
+}
+
+.one-card.p1 {
+	background-color: aquamarine;
+}
+.one-card.p2 {
+	background-color: gold;
+}
+
+
+#battlefieldContainer {
+	background-color: darkblue;
+	width: 440px;
+}
+
+#battlefield {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+}
+
+#battlefield li {
+	width: 133px;
+	height: 133px;
+	margin: 1px;
+}
+li.fake-card {
+	background-color: rgba(255,255,255,0.2);
+}
+li.fake-card:hover {
+	box-shadow: 0 0 2px 0px rgba(0,0,0,0.7);
+}
+
+
+.stats-container {
+	width: 45px;
+	height: 45px;
+	background-color: white;
+	padding-top: 2px;
+}
+
+.top, .left, .right, .bottom {
+	font-size: 16px;
+	text-align: center;
+	width: 25px;
+	margin: 0 auto;
+	font-weight: bold;
+	line-height: 12px
+}
+
+.top {
+    margin-top: 3px;
+}
+
+.middle {
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: space-between;
+}
+
+.left {
+
+}
+
+.right {
+
+}
+
+.bottom {
+
+}
+
+
+
+.my-turn {
+	text-align: center;
+	font-size: 25px;
+	width: 75%;
+	margin: 0 auto;
+	padding: 18px;
+	color: green;
+	font-weight: bold;
+	background-color: whitesmoke;
+	box-shadow: 0 0 12px 1px white;
+	transition: transform 0.5s ease;
+}
+
+.nope .my-turn {
+	transform: rotateX(89deg);
+}
+
+
+.nope {
+	filter: brightness(0.4);
+}
