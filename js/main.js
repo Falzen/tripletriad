@@ -131,14 +131,22 @@ function doBattle(selectedCard, enemyCard, playedDir) {
 		playedDir == 'left' ? 'right' :
 		playedDir == 'right' ? 'left' : 'ERROR directions comparison';
 	
-	let looser = playedCard[playedDir] < adjacentCard[adjacentDir] ? 'playedCard' :
-				adjacentCard[adjacentDir] < playedCard[playedDir] ? 'adjacentCard' : 'equality';
-
-	if(looser == 'equality') {
+	let looserCard = 'equality';
+	let winnerClass = '';
+	console.log($(enemyCard));
+	if(playedCard[playedDir] < adjacentCard[adjacentDir]) {
+		looserCard = selectedCard;
+		winnerClass = $(enemyCard)[0].classList.contains('p1') ? 'p1' : 'p2';
+	} else if(adjacentCard[adjacentDir] < playedCard[playedDir]) {
+		looserCard = enemyCard;
+		winnerClass = $(selectedCard)[0].classList.contains('p1') ? 'p1' : 'p2';
+	}
+console.log(winnerClass);
+	if(looserCard == 'equality') {
 		return;
 	}
 
-
+    $(looserCard).removeClass('p1').removeClass('p2').addClass(winnerClass);
 
 }
 
