@@ -15,19 +15,32 @@ AMELIO
 
 var isCardSelected = false;
 var selectedCard;
+var allCardsInPlay = []; // filled in makeHandsCards()
+var allCardsInPlayById = new Map(); // filled in makeHandsCards()
+var gameSettings = {
+	currentTurnNb: 1,
+	lastTurnNb: 9
+};
+var frontSettings = {
+	isPlayer1Turn: true,
+	isPlayer2Turn: false
+}
+
+
 $(document).ready(function() {
 	init();
 });
 
 function init() {
-	// rivets.bind($('#mainContainer'), {
-	// 	settings: settings, 
-	// 	player: player, 
-	// 	shop: shop,
-	// 	locationContainer: currentLocation
-	// });
+	rivets.bind($('#mainContainer'), {
+		frontSettings: frontSettings
+	});
+
+	prepareBattlefield();
+	makeHandsCards();
 
 	$(document).on('click', '.hand:not(.nope) .one-card', function(ev) {
+		//$('#endGameModal').removeClass('hiddenPosition');
 		if($(this).hasClass('is-selected')) {
 			$(this).removeClass('is-selected');
 			return;
@@ -46,11 +59,56 @@ function init() {
 		handleCardPlay(selectedCard, $(this)[0]);
 	});
 
-	makeHandsCards();
+	$('#fuckBtn').on('click', function(ev) {
+		makeTauntPopups(10);
+	});
+	
+	$('#replayBtn').on('click', function(ev) {
+		// empty both hands for the last remaining card
+		$('#p1Hand ul.hand-container').html();
+		$('#p2Hand ul.hand-container').html();
+		
+		// empty the battlefield
+		prepareBattlefield();
+		
+		// reinit variables
+		isCardSelected = false;
+		selectedCard = null;
+		allCardsInPlay = []; // filled in makeHandsCards()
+		allCardsInPlayById = new Map(); // filled in makeHandsCards()
+		gameSettings.currentTurnNb = 1;
+
+		// hide end game modal
+		$('#endGameModal').addClass('hiddenPosition');
+
+		setTimeout(function() {
+			// start new round
+			makeHandsCards();
+
+			// set player's turn is player 1
+			frontSettings.isPlayer1Turn = true;
+			frontSettings.isPlayer2Turn = false;
+		}, 650);
+		
+
+	});
 }
 
-var allCardsInPlay = [];
-var allCardsInPlayById = new Map();
+function prepareBattlefield() {
+	let output = `<li id="0_0" class="fake-card"></li>
+		<li id="0_1" class="fake-card"></li>
+		<li id="0_2" class="fake-card"></li>
+		<li id="1_0" class="fake-card"></li>
+		<li id="1_1" class="fake-card"></li>
+		<li id="1_2" class="fake-card"></li>
+		<li id="2_0" class="fake-card"></li>
+		<li id="2_1" class="fake-card"></li>
+		<li id="2_2" class="fake-card"></li>`;
+
+	$('ul#battlefield').html(output);
+}
+
+
 function makeHandsCards() {
 	let bothHandsStats = generateCardStatsList(10);
 	let p1HandDomOutput = '';
@@ -102,6 +160,28 @@ function handleCardPlay(selectedCard, emptySpot) {
 
 	// check for battle
 	checkForBattle(selectedCard, idsToCheck);
+
+	if(gameSettings.currentTurnNb == gameSettings.lastTurnNb) {
+		handleEndOfGame();
+	} else {
+		gameSettings.currentTurnNb++;
+	}
+
+	// next player's turn
+	frontSettings.isPlayer1Turn = !frontSettings.isPlayer1Turn;
+	frontSettings.isPlayer2Turn = !frontSettings.isPlayer2Turn;
+
+}
+
+function handleEndOfGame() {
+	let player_p1CardsNb = $('#battlefield .p1').length;
+	let player_p2CardsNb = $('#battlefield .p2').length;
+	if(player_p1CardsNb > player_p2CardsNb) {
+		$('#winnerName').text('Player 1');
+	} else if(player_p1CardsNb < player_p2CardsNb) {
+		$('#winnerName').text('Player 2');
+	}
+	$('#endGameModal').removeClass('hiddenPosition');
 }
 
 function checkForBattle(selectedCard, coords) {
@@ -133,21 +213,25 @@ function doBattle(selectedCard, enemyCard, playedDir) {
 	
 	let looserCard = 'equality';
 	let winnerClass = '';
-	console.log($(enemyCard));
+
+	// if the played cards looses
 	if(playedCard[playedDir] < adjacentCard[adjacentDir]) {
-		looserCard = selectedCard;
-		winnerClass = $(enemyCard)[0].classList.contains('p1') ? 'p1' : 'p2';
-	} else if(adjacentCard[adjacentDir] < playedCard[playedDir]) {
+		return;
+		// looserCard = selectedCard;
+		// winnerClass = $(enemyCard)[0].classList.contains('p1') ? 'p1' : 'p2';
+	} 
+
+	// if the played cards wins
+	else if(adjacentCard[adjacentDir] < playedCard[playedDir]) {
 		looserCard = enemyCard;
 		winnerClass = $(selectedCard)[0].classList.contains('p1') ? 'p1' : 'p2';
 	}
-console.log(winnerClass);
+
 	if(looserCard == 'equality') {
 		return;
 	}
 
     $(looserCard).removeClass('p1').removeClass('p2').addClass(winnerClass);
-
 }
 
 function getAdjacentCoordinates(card) {
@@ -181,4 +265,30 @@ function getAdjacentCoordinates(card) {
 	}
 
 	return idsToCheck;
+}
+
+function makeTauntPopups(nb) {
+	let loop = setInterval(function() {
+		console.log(nb);
+		injectOneTauntPopup(nb);
+		nb--;
+		if(nb == 0) {
+			clearInterval(loop);
+		}
+	}, 75);
+}
+
+function injectOneTauntPopup(identifier) {
+	let output = '';
+	let top = getRandomInt(0, 75);
+	let left = getRandomInt(0, 75);
+	output += 	`<div id="${identifier}" class="tauntPopup" style="top: ${top}%; left: ${left}%;">
+					<p>Ha ha ha !</p>
+				</div>`;
+	$('#pageContainer').append(output);
+
+	setTimeout(function() {
+		$('#'+identifier).remove();
+	}, 750);
+
 }
