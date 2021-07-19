@@ -64,6 +64,11 @@ function init() {
 	});
 	
 	$('#replayBtn').on('click', function(ev) {
+		//location.reload()
+		// does NOT create an entry in the browser history
+		window.location.replace(window.location.pathname + window.location.search + window.location.hash);
+
+		/*
 		// empty both hands for the last remaining card
 		$('#p1Hand ul.hand-container').html();
 		$('#p2Hand ul.hand-container').html();
@@ -77,6 +82,8 @@ function init() {
 		allCardsInPlay = []; // filled in makeHandsCards()
 		allCardsInPlayById = new Map(); // filled in makeHandsCards()
 		gameSettings.currentTurnNb = 1;
+		frontSettings.isPlayer1Turn = true;
+		frontSettings.isPlayer2Turn = false;
 
 		// hide end game modal
 		$('#endGameModal').addClass('hiddenPosition');
@@ -84,13 +91,9 @@ function init() {
 		setTimeout(function() {
 			// start new round
 			makeHandsCards();
-
-			// set player's turn is player 1
-			frontSettings.isPlayer1Turn = true;
-			frontSettings.isPlayer2Turn = false;
 		}, 650);
+		*/
 		
-
 	});
 }
 
