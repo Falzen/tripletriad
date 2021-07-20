@@ -25,16 +25,98 @@ function makeMapByAttrFromList(list, attrName) {
 
 
 
-var max = 14;
-var count = 4;
-
 
 
 function randombetween(min, max) {
 	return Math.floor(Math.random()*(max-min+1)+min);
 }
+function makeStarterDeck() {
+	let tempList = [];
+	for (var i = 0; i < 5; i++) {
+		tempList.push(allCardsData[i]);
+	}
+	return tempList;
+}
 
 
+function makeCardsMapByLevels() {
+	let cardsDataByLevelMap = new Map();
+	cardsDataByLevelMap.set('1', null);
+	cardsDataByLevelMap.set('2', null);
+	cardsDataByLevelMap.set('3', null);
+	cardsDataByLevelMap.set('4', null);
+	cardsDataByLevelMap.set('5', null);
+	cardsDataByLevelMap.set('6', null);
+	cardsDataByLevelMap.set('7', null);
+
+	for(let [key, value] of cardsDataByPowerMap) {
+		if(key < 16) {
+			if(cardsDataByLevelMap.get('1') == null) {
+				cardsDataByLevelMap.set('1', value);
+			} else {
+				let tempList = cardsDataByLevelMap.get('1');
+				tempList.concat(value);
+				cardsDataByLevelMap.set('1', tempList);
+			}
+		}
+		else if(key < 20) {
+			if(cardsDataByLevelMap.get('2') == null) {
+				cardsDataByLevelMap.set('2', value);
+			} else {
+				let tempList = cardsDataByLevelMap.get('2');
+				tempList.concat(value);
+				cardsDataByLevelMap.set('2', tempList);
+			}
+		}
+		else if(key < 23) {
+			if(cardsDataByLevelMap.get('3') == null) {
+				cardsDataByLevelMap.set('3', value);
+			} else {
+				let tempList = cardsDataByLevelMap.get('3');
+				tempList.concat(value);
+				cardsDataByLevelMap.set('3', tempList);
+			}
+		}
+		else if(key < 25) {
+			if(cardsDataByLevelMap.get('4') == null) {
+				cardsDataByLevelMap.set('4', value);
+			} else {
+				let tempList = cardsDataByLevelMap.get('4');
+				tempList.concat(value);
+				cardsDataByLevelMap.set('4', tempList);
+			}
+		}
+		else if(key < 27) {
+			if(cardsDataByLevelMap.get('5') == null) {
+				cardsDataByLevelMap.set('5', value);
+			} else {
+				let tempList = cardsDataByLevelMap.get('5');
+				tempList = tempList.concat(value);
+				cardsDataByLevelMap.set('5', tempList);
+			}
+		}
+		else if(key < 28) {
+			if(cardsDataByLevelMap.get('6') == null) {
+				cardsDataByLevelMap.set('6', value);
+			} else {
+				let tempList = cardsDataByLevelMap.get('6');
+				tempList.concat(value);
+				cardsDataByLevelMap.set('6', tempList);
+			}
+		}
+		else if(key < 30) {
+			if(cardsDataByLevelMap.get('7') == null) {
+				cardsDataByLevelMap.set('7', value);
+			} else {
+				let tempList = cardsDataByLevelMap.get('7');
+				tempList.concat(value);
+				cardsDataByLevelMap.set('7', tempList);
+			}
+		}
+	}
+	console.log('fddfs', cardsDataByLevelMap)
+	return cardsDataByLevelMap;
+}
 
 
 /*
@@ -45,6 +127,9 @@ function generateCardStatsList(nb) {
 	}
 	return statsList;
 }
+
+var max = 14;
+var count = 4;
 
 function generateCardStats() {
 	var r1 = randombetween(1, max-3);

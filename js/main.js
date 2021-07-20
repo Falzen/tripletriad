@@ -19,7 +19,8 @@ var allCardsInPlay = []; // filled in makeHandsCards()
 var allCardsInPlayById = new Map(); // filled in makeHandsCards()
 var gameSettings = {
 	currentTurnNb: 1,
-	lastTurnNb: 9
+	lastTurnNb: 9,
+	currentCardLevel: '1'
 };
 var frontSettings = {
 	isPlayer1Turn: true,
@@ -28,6 +29,10 @@ var frontSettings = {
 
 
 $(document).ready(function() {
+	let output = '';
+	for (var i = 0; i < allCardsData.length; i++) {
+		output += allCardsData[i].name + " : " + allCardsData[i].attributes.reduce((a, b) => a + b, 0) + "\n";
+	}
 	init();
 });
 
@@ -46,7 +51,6 @@ function init() {
 			return;
 		}
 		selectedCard = ev.currentTarget;
-		console.log(selectedCard);
 		$(this).parent().children('li').removeClass('is-selected').addClass('is-not-selected');
 		$(this).addClass('is-selected');
 		isCardSelected = true;
@@ -85,13 +89,15 @@ function prepareBattlefield() {
 
 
 function makeHandsCards() {
-	let bothHandsStats = drawCards(10);
+	//let bothHandsStats = drawCardsFromDeck(10, cardsDataByLevelMap.get(gameSettings.currentCardLevel));
+	let bothHandsStats = makeStarterDeck();
+	bothHandsStats = bothHandsStats.concat(makeStarterDeck());
 	let p1HandDomOutput = '';
 	let p2HandDomOutput = '';
 	for (var i = 0; i < bothHandsStats.length; i++) {
 		//bothHandsStats.sort(() => (Math.random() > .5) ? 1 : -1);
-		let selectedData = bothHandsStats[i][0];
-		
+		let selectedData = bothHandsStats[i]; // /!\ add [0] if method slice() used in drawCardsFromDeck()
+
 		let oneCardData = {
 			id: i+1,
 			name: selectedData.name,
@@ -113,11 +119,12 @@ function makeHandsCards() {
 	allCardsInPlayById = makeMapByAttrFromList(allCardsInPlay, 'id');
 }
 
-function drawCards(nb) {
+function drawCardsFromDeck(nb, deck) {
 	let tempList = []
 	for (var i = 0; i < nb; i++) {
-		let randomCardIndex = getRandomInt(0, allCardsData.length-1);
-		tempList.push(allCardsData.splice(randomCardIndex, 1));
+		let randomCardIndex = getRandomInt(0, deck.length-1);
+		tempList.push(deck[randomCardIndex]);
+		//tempList.push(allCardsData.splice(randomCardIndex, 1));
 	}
 	return tempList;
 }
@@ -266,7 +273,6 @@ function getAdjacentCoordinates(card) {
 
 function makeTauntPopups(nb) {
 	let loop = setInterval(function() {
-		console.log(nb);
 		injectOneTauntPopup(nb);
 		nb--;
 		if(nb == 0) {
