@@ -64,36 +64,8 @@ function init() {
 	});
 	
 	$('#replayBtn').on('click', function(ev) {
-		//location.reload()
 		// does NOT create an entry in the browser history
 		window.location.replace(window.location.pathname + window.location.search + window.location.hash);
-
-		/*
-		// empty both hands for the last remaining card
-		$('#p1Hand ul.hand-container').html();
-		$('#p2Hand ul.hand-container').html();
-		
-		// empty the battlefield
-		prepareBattlefield();
-		
-		// reinit variables
-		isCardSelected = false;
-		selectedCard = null;
-		allCardsInPlay = []; // filled in makeHandsCards()
-		allCardsInPlayById = new Map(); // filled in makeHandsCards()
-		gameSettings.currentTurnNb = 1;
-		frontSettings.isPlayer1Turn = true;
-		frontSettings.isPlayer2Turn = false;
-
-		// hide end game modal
-		$('#endGameModal').addClass('hiddenPosition');
-
-		setTimeout(function() {
-			// start new round
-			makeHandsCards();
-		}, 650);
-		*/
-		
 	});
 }
 
@@ -113,17 +85,21 @@ function prepareBattlefield() {
 
 
 function makeHandsCards() {
-	let bothHandsStats = generateCardStatsList(10);
+	let bothHandsStats = drawCards(10);
 	let p1HandDomOutput = '';
 	let p2HandDomOutput = '';
 	for (var i = 0; i < bothHandsStats.length; i++) {
-		bothHandsStats[i].sort(() => (Math.random() > .5) ? 1 : -1);
+		//bothHandsStats.sort(() => (Math.random() > .5) ? 1 : -1);
+		let selectedData = bothHandsStats[i][0];
+		
 		let oneCardData = {
 			id: i+1,
-			top: bothHandsStats[i][0],
-			left: bothHandsStats[i][1],
-			right: bothHandsStats[i][2],
-			bottom: bothHandsStats[i][3]
+			name: selectedData.name,
+			src: selectedData.src,
+			top: selectedData.attributes[0],
+			right: selectedData.attributes[1],
+			left: selectedData.attributes[2],
+			bottom: selectedData.attributes[3]
 		}
 		allCardsInPlay.push(oneCardData);
 		if(i%2 ==0) {
@@ -136,9 +112,27 @@ function makeHandsCards() {
 	$('#p2Hand .hand-container').html(p2HandDomOutput);
 	allCardsInPlayById = makeMapByAttrFromList(allCardsInPlay, 'id');
 }
+
+function drawCards(nb) {
+	let tempList = []
+	for (var i = 0; i < nb; i++) {
+		let randomCardIndex = getRandomInt(0, allCardsData.length-1);
+		tempList.push(allCardsData.splice(randomCardIndex, 1));
+	}
+	return tempList;
+}
+
+
+
+
+
+
+
+
+
 function makeOneCardDom(data, who) {
 
-	let domOutput = `<li class="one-card ${who}" data-cardid="${data.id}">
+	let domOutput = `<li class="one-card ${who}" data-cardid="${data.id}" style="background-image: url('${data.src}'); background-size: contain;">
 						<div class="stats-container">
 							<div class="top">${data.top}</div>
 							<div class="middle">

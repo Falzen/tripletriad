@@ -29,9 +29,15 @@ var max = 14;
 var count = 4;
 
 
+
 function randombetween(min, max) {
-  return Math.floor(Math.random()*(max-min+1)+min);
+	return Math.floor(Math.random()*(max-min+1)+min);
 }
+
+
+
+
+/*
 function generateCardStatsList(nb) {
 	let statsList = [];
 	for (var i = 0; i < nb; i++) {
@@ -39,22 +45,22 @@ function generateCardStatsList(nb) {
 	}
 	return statsList;
 }
+
 function generateCardStats() {
 	var r1 = randombetween(1, max-3);
 	var r2 = randombetween(1, max-2-r1);
 	var r3 = randombetween(1, max-1-r1-r2);
 	var r4 = max - r1 - r2 - r3;
-  var r = [];
-  var currsum = 0;
-  for(var i=0; i<count-1; i++) {
-     r[i] = randombetween(1, max-(count-i-1)-currsum);
-     currsum += r[i];
-  }
-  r[count-1] = max - currsum;
-  return r;
+	var r = [];
+	var currsum = 0;
+	for(var i=0; i<count-1; i++) {
+	 r[i] = randombetween(1, max-(count-i-1)-currsum);
+	 currsum += r[i];
+	}
+	r[count-1] = max - currsum;
+	return r;
 }
-
-console.log(generateCardStats());
+*/
 
 
 
