@@ -1,0 +1,234 @@
+-- phpMyAdmin SQL Dump
+-- version 4.9.2
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1:3306
+-- Generation Time: Jul 21, 2021 at 03:46 PM
+-- Server version: 10.4.10-MariaDB
+-- PHP Version: 7.3.12
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+--
+-- Database: `tripletriad`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cards`
+--
+
+DROP TABLE IF EXISTS `cards`;
+CREATE TABLE IF NOT EXISTS `cards` (
+  `id` int(11) NOT NULL,
+  `power` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `img_src` varchar(255) NOT NULL,
+  `stat_top` int(11) NOT NULL,
+  `stat_left` int(11) NOT NULL,
+  `stat_right` int(11) NOT NULL,
+  `stat_bottom` int(11) NOT NULL,
+  `element` varchar(255) NOT NULL,
+  `description` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=110 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `cards`
+--
+
+INSERT INTO `cards` (`id`, `power`, `name`, `img_src`, `stat_top`, `stat_left`, `stat_right`, `stat_bottom`, `element`, `description`) VALUES
+(9, 13, 'Caterchipillar', 'img/cards/card (10).png', 4, 3, 2, 4, 'N/A', 'undefined'),
+(11, 12, 'Grat', 'img/cards/card (12).png', 7, 1, 1, 3, 'N/A', 'undefined'),
+(2, 12, 'BiteBug', 'img/cards/card (03).png', 1, 5, 3, 3, 'N/A', 'undefined'),
+(7, 11, 'Fastitocalon-F', 'img/cards/card (08).png', 3, 1, 5, 2, 'Earth', 'undefined'),
+(5, 11, 'Gayla', 'img/cards/card (06).png', 2, 4, 1, 4, 'Thunder', 'undefined'),
+(6, 11, 'Gesper', 'img/cards/card (07).png', 1, 1, 5, 4, 'N/A', 'undefined'),
+(4, 11, 'Blobra', 'img/cards/card (05).png', 2, 5, 3, 1, 'N/A', 'undefined'),
+(0, 11, 'Geezard', 'img/cards/card (01).png', 1, 1, 4, 5, 'N/A', 'undefined'),
+(8, 10, 'BloodSoul', 'img/cards/card (09).png', 2, 1, 1, 6, 'N/A', 'undefined'),
+(3, 10, 'RedBat', 'img/cards/card (04).png', 6, 2, 1, 1, 'N/A', 'undefined'),
+(1, 10, 'Fungar', 'img/cards/card (02).png', 5, 3, 1, 1, 'N/A', 'undefined'),
+(12, 13, 'Buel', 'img/cards/card (13).png', 6, 3, 2, 2, 'N/A', 'undefined'),
+(20, 13, 'Jelleye', 'img/cards/card (21).png', 3, 7, 2, 1, 'N/A', 'undefined'),
+(14, 14, 'GlacialEye', 'img/cards/card (15).png', 6, 3, 1, 4, 'Ice', 'undefined'),
+(17, 14, 'Anacondaur', 'img/cards/card (18).png', 5, 5, 1, 3, 'Poison', 'undefined'),
+(18, 14, 'Creeps', 'img/cards/card (19).png', 5, 2, 2, 5, 'Thunder', 'undefined'),
+(10, 15, 'Cockatrice', 'img/cards/card (11).png', 6, 6, 1, 2, 'Thunder', 'undefined'),
+(13, 15, 'Mesmerize', 'img/cards/card (14).png', 5, 4, 3, 3, 'N/A', 'undefined'),
+(15, 15, 'Belhelmel', 'img/cards/card (16).png', 3, 3, 4, 5, 'N/A', 'undefined'),
+(16, 15, 'Thrustaevis', 'img/cards/card (17).png', 5, 5, 3, 2, 'Wind', 'undefined'),
+(19, 15, 'Grendel', 'img/cards/card (20).png', 4, 2, 4, 5, 'Thunder', 'undefined'),
+(21, 15, 'GrandMantis', 'img/cards/card (22).png', 5, 3, 2, 5, 'N/A', 'undefined'),
+(23, 16, 'Armadodo', 'img/cards/card (24).png', 6, 6, 3, 1, 'Earth', 'undefined'),
+(25, 16, 'Fastitcalon', 'img/cards/card (26).png', 7, 3, 5, 1, 'Earth', 'undefined'),
+(26, 16, 'SnowLion', 'img/cards/card (27).png', 7, 3, 1, 5, 'Ice', 'undefined'),
+(47, 16, 'PuPu', 'img/cards/card (48).png', 3, 1, 10, 2, 'N/A', 'undefined'),
+(22, 17, 'Forbidden', 'img/cards/card (23).png', 6, 2, 6, 3, 'N/A', 'undefined'),
+(27, 17, 'Ochu', 'img/cards/card (28).png', 5, 3, 6, 3, 'N/A', 'undefined'),
+(28, 17, 'SAM08G', 'img/cards/card (29).png', 5, 4, 6, 2, 'Fire', 'undefined'),
+(29, 17, 'DeathClaw', 'img/cards/card (30).png', 4, 2, 4, 7, 'Fire', 'undefined'),
+(30, 17, 'Cactaur', 'img/cards/card (31).png', 6, 3, 2, 6, 'N/A', 'undefined'),
+(31, 17, 'Tonberry', 'img/cards/card (32).png', 3, 4, 6, 4, 'N/A', 'undefined'),
+(32, 17, 'AbyssWorm', 'img/cards/card (33).png', 7, 5, 2, 3, 'Earth', 'undefined'),
+(38, 17, 'Wendigo', 'img/cards/card (39).png', 7, 6, 3, 1, 'N/A', 'undefined'),
+(24, 18, 'TriFace', 'img/cards/card (25).png', 3, 5, 5, 5, 'Poison', 'undefined'),
+(33, 18, 'Turtapod', 'img/cards/card (34).png', 2, 7, 3, 6, 'N/A', 'undefined'),
+(36, 18, 'Bomb', 'img/cards/card (37).png', 2, 3, 7, 6, 'Fire', 'undefined'),
+(37, 18, 'Blitz', 'img/cards/card (38).png', 1, 7, 6, 4, 'Thunder', 'undefined'),
+(41, 18, 'BlueDragon', 'img/cards/card (42).png', 6, 3, 2, 7, 'Poison', 'undefined'),
+(35, 19, 'T-Rexaur', 'img/cards/card (36).png', 4, 7, 6, 2, 'N/A', 'undefined'),
+(39, 19, 'Torama', 'img/cards/card (40).png', 7, 4, 4, 4, 'N/A', 'undefined'),
+(40, 19, 'Imp', 'img/cards/card (41).png', 3, 6, 7, 3, 'N/A', 'undefined'),
+(43, 19, 'Hexadragon', 'img/cards/card (44).png', 7, 3, 5, 4, 'Fire', 'undefined'),
+(57, 19, 'X-ATM092', 'img/cards/card (58).png', 4, 3, 8, 4, 'N/A', 'undefined'),
+(34, 20, 'Vysage', 'img/cards/card (35).png', 6, 5, 5, 4, 'N/A', 'undefined'),
+(42, 20, 'Adamantiose', 'img/cards/card (43).png', 4, 6, 5, 5, 'Earth', 'undefined'),
+(50, 20, 'Malboro', 'img/cards/card (51).png', 7, 2, 7, 4, 'Poison', 'undefined'),
+(51, 20, 'RubyDragon', 'img/cards/card (52).png', 7, 4, 2, 7, 'Fire', 'undefined'),
+(59, 20, 'Gerogero', 'img/cards/card (60).png', 1, 3, 8, 8, 'Poison', 'undefined'),
+(60, 20, 'Iguion', 'img/cards/card (61).png', 8, 2, 2, 8, 'N/A', 'undefined'),
+(45, 21, 'Behemoth', 'img/cards/card (46).png', 3, 7, 6, 5, 'N/A', 'undefined'),
+(46, 21, 'Chimera', 'img/cards/card (47).png', 7, 3, 6, 5, 'Water', 'undefined'),
+(48, 21, 'Elastiod', 'img/cards/card (49).png', 6, 7, 2, 6, 'N/A', 'undefined'),
+(49, 21, 'GIM47N', 'img/cards/card (50).png', 5, 4, 5, 7, 'N/A', 'undefined'),
+(52, 21, 'Elnoyle', 'img/cards/card (53).png', 5, 6, 3, 7, 'N/A', 'undefined'),
+(53, 21, 'TonberryKing', 'img/cards/card (54).png', 4, 4, 6, 7, 'N/A', 'undefined'),
+(54, 21, 'Wedge, Biggs', 'img/cards/card (55).png', 6, 7, 6, 2, 'N/A', 'undefined'),
+(63, 21, 'Oilboyle', 'img/cards/card (64).png', 1, 8, 8, 4, 'N/A', 'undefined'),
+(65, 21, 'Krysta', 'img/cards/card (66).png', 7, 1, 5, 8, 'N/A', 'undefined'),
+(44, 22, 'IronGiant', 'img/cards/card (45).png', 6, 5, 5, 6, 'N/A', 'undefined'),
+(55, 22, 'Fujin, Raijin', 'img/cards/card (56).png', 2, 4, 8, 8, 'N/A', 'undefined'),
+(56, 22, 'Elvoret', 'img/cards/card (57).png', 7, 4, 8, 3, 'Wind', 'undefined'),
+(58, 22, 'Grenaldo', 'img/cards/card (59).png', 7, 5, 2, 8, 'N/A', 'undefined'),
+(61, 23, 'Abadon', 'img/cards/card (62).png', 6, 5, 8, 4, 'N/A', 'undefined'),
+(62, 23, 'Trauma', 'img/cards/card (63).png', 4, 6, 8, 5, 'N/A', 'undefined'),
+(64, 23, 'ShumiTribe', 'img/cards/card (65).png', 6, 4, 5, 8, 'N/A', 'undefined'),
+(68, 23, 'Tri-Point', 'img/cards/card (69).png', 8, 8, 5, 2, 'Thunder', 'undefined'),
+(75, 23, 'Catoblepas', 'img/cards/card (76).png', 1, 7, 8, 7, 'N/A', 'undefined'),
+(80, 23, 'MinMog', 'img/cards/card (81).png', 9, 2, 3, 9, 'N/A', 'undefined'),
+(66, 24, 'Propagator', 'img/cards/card (67).png', 8, 8, 4, 4, 'N/A', 'undefined'),
+(67, 24, 'JumboCactaur', 'img/cards/card (68).png', 8, 4, 8, 4, 'N/A', 'undefined'),
+(70, 24, 'MobileType8', 'img/cards/card (71).png', 8, 3, 6, 7, 'N/A', 'undefined'),
+(71, 24, 'Sphinxara', 'img/cards/card (72).png', 8, 8, 3, 5, 'N/A', 'undefined'),
+(76, 24, 'UltimaWeapon', 'img/cards/card (77).png', 7, 8, 7, 2, 'N/A', 'undefined'),
+(82, 24, 'Quezacotl', 'img/cards/card (83).png', 2, 4, 9, 9, 'Thunder', 'undefined'),
+(86, 24, 'Sacred', 'img/cards/card (87).png', 5, 9, 1, 9, 'Earth', 'undefined'),
+(97, 24, 'Doomtrain', 'img/cards/card (98).png', 3, 10, 1, 10, 'Poison', 'undefined'),
+(69, 25, 'Gargantua', 'img/cards/card (70).png', 5, 8, 6, 6, 'N/A', 'undefined'),
+(72, 25, 'Tiamat', 'img/cards/card (73).png', 8, 4, 8, 5, 'N/A', 'undefined'),
+(73, 25, 'BGH251F2', 'img/cards/card (74).png', 5, 5, 7, 8, 'N/A', 'undefined'),
+(74, 25, 'RedGiant', 'img/cards/card (75).png', 6, 7, 8, 4, 'N/A', 'undefined'),
+(77, 25, 'ChubbyChocobo', 'img/cards/card (78).png', 4, 9, 4, 8, 'N/A', 'undefined'),
+(78, 25, 'Angelo', 'img/cards/card (79).png', 9, 3, 6, 7, 'N/A', 'undefined'),
+(79, 25, 'Gilgamesh', 'img/cards/card (80).png', 3, 6, 7, 9, 'N/A', 'undefined'),
+(81, 25, 'Chicobo', 'img/cards/card (82).png', 9, 4, 4, 8, 'N/A', 'undefined'),
+(84, 25, 'Ifrit', 'img/cards/card (85).png', 9, 8, 6, 2, 'Fire', 'undefined'),
+(85, 25, 'Siren', 'img/cards/card (86).png', 9, 8, 6, 2, 'N/A', 'undefined'),
+(87, 25, 'Minotaur', 'img/cards/card (88).png', 9, 5, 9, 2, 'Earth', 'undefined'),
+(90, 25, 'Leviathan', 'img/cards/card (91).png', 7, 7, 10, 1, 'Water', 'undefined'),
+(92, 25, 'Pandemonia', 'img/cards/card (93).png', 10, 7, 1, 7, 'Wind', 'undefined'),
+(94, 25, 'Alexander', 'img/cards/card (95).png', 9, 2, 10, 4, 'Holy', 'undefined'),
+(83, 26, 'Shiva', 'img/cards/card (84).png', 6, 9, 7, 4, 'Ice', 'undefined'),
+(88, 26, 'Carbuncle', 'img/cards/card (89).png', 8, 4, 4, 10, 'N/A', 'undefined'),
+(89, 26, 'Diablos', 'img/cards/card (90).png', 5, 3, 10, 8, 'N/A', 'undefined'),
+(91, 26, 'Odin', 'img/cards/card (92).png', 8, 5, 10, 3, 'N/A', 'undefined'),
+(95, 26, 'Phoenix', 'img/cards/card (96).png', 7, 10, 2, 7, 'Fire', 'undefined'),
+(96, 26, 'Bahumut', 'img/cards/card (97).png', 10, 6, 8, 2, 'N/A', 'undefined'),
+(106, 26, 'Rinoa', 'img/cards/card (107).png', 4, 10, 10, 2, 'N/A', 'undefined'),
+(107, 26, 'Edea', 'img/cards/card (108).png', 10, 3, 10, 3, 'N/A', 'undefined'),
+(93, 27, 'Cerberus', 'img/cards/card (94).png', 7, 10, 4, 6, 'N/A', 'undefined'),
+(98, 27, 'Eden', 'img/cards/card (99).png', 4, 10, 4, 9, 'N/A', 'undefined'),
+(99, 27, 'Ward', 'img/cards/card (100).png', 10, 8, 7, 2, 'N/A', 'undefined'),
+(101, 27, 'Laguna', 'img/cards/card (102).png', 5, 9, 10, 3, 'N/A', 'undefined'),
+(103, 27, 'Quistis', 'img/cards/card (104).png', 9, 2, 6, 10, 'N/A', 'undefined'),
+(104, 27, 'Irvine', 'img/cards/card (105).png', 2, 10, 6, 9, 'N/A', 'undefined'),
+(102, 28, 'Selphie', 'img/cards/card (103).png', 10, 6, 8, 4, 'N/A', 'undefined'),
+(100, 29, 'Kiros', 'img/cards/card (101).png', 6, 10, 7, 6, 'N/A', 'undefined'),
+(105, 29, 'Zell', 'img/cards/card (106).png', 8, 6, 5, 10, 'N/A', 'undefined'),
+(108, 29, 'Seifer', 'img/cards/card (109).png', 6, 4, 9, 10, 'N/A', 'undefined'),
+(109, 35, 'Squall', 'img/cards/card (110).png', 10, 6, 10, 9, 'N/A', 'undefined');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `decks`
+--
+
+DROP TABLE IF EXISTS `decks`;
+CREATE TABLE IF NOT EXISTS `decks` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `cards_ids` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `decks`
+--
+
+INSERT INTO `decks` (`id`, `name`, `user_id`, `cards_ids`) VALUES
+(1, 'my first deck', 1, '2,4,6,8,10');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `pseudo` varchar(255) NOT NULL,
+  `password` text NOT NULL,
+  `victories` int(11) NOT NULL DEFAULT 0,
+  `draws` int(11) NOT NULL DEFAULT 0,
+  `losses` int(11) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `pseudo`, `password`, `victories`, `draws`, `losses`) VALUES
+(1, 'Falzen', 'Falzen', 0, 0, 0),
+(2, 'sASA', 'saas', 0, 0, 0),
+(3, 'dzqdqz', 'zdqdzqdzq', 0, 0, 0),
+(5, 'zqsd', 'zqsd', 0, 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users_to_cards`
+--
+
+DROP TABLE IF EXISTS `users_to_cards`;
+CREATE TABLE IF NOT EXISTS `users_to_cards` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `card_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `users_to_cards`
+--
+
+INSERT INTO `users_to_cards` (`id`, `user_id`, `card_id`) VALUES
+(1, 1, 1),
+(2, 1, 2),
+(3, 1, 3),
+(4, 1, 4),
+(5, 1, 5),
+(6, 1, 6),
+(7, 1, 7),
+(8, 1, 8),
+(9, 1, 9),
+(10, 1, 10);
+COMMIT;
