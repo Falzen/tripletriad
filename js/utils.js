@@ -129,3 +129,42 @@ function rolls(str) { // ex: 3d6+4
 function roll(d) {
 	return getRandomInt(1, d);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*  debug  */
+function printAllCardsDBinsertion() {
+	let output = "INSERT INTO `cards` (`id`, `power`, `name`, `img_src`, `stat_top`, `stat_right`, `stat_bottom`, `stat_left`, `element`, `description`) VALUES ";
+
+	for(let i=0; i<allCardsData.length; i++) {
+		let card = allCardsData[i];
+		output += "(" + card.id + ",";
+		output += card.power + ",";
+		output += "'" + card.name + "',";
+		output += "'" + card.src + "',";
+		output += card.attributes[0] + ",";
+		output += card.attributes[1] + ",";
+		output += card.attributes[2] + ",";
+		output += card.attributes[3] + ",";
+		output += "'" + card.element + "',";
+		output += "'" + card.description + "')";
+
+		if(i != allCardsData.length -1) {
+			output += ", ";
+		}
+	}
+	console.log(output);
+}

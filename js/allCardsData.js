@@ -127,7 +127,6 @@ function compare( a,  b ) {
 // allCardsData.sort( compare );
 
 var cardsDataByPowerMap = makeMapByAttrFromList(allCardsData, "power");
-var cardsDataByLevelMap = makeCardsMapByLevels();
 /*
 qte10to15 :  22
 qte16to19 :  22

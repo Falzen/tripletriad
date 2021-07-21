@@ -89,28 +89,8 @@ function prepareBattlefield() {
 }
 
 
-function makeHandsCards() {	debugger;
- let output = "";
+function makeHandsCards() {
 
- for(let i=0; i<allCardsData.length; i++) {
- 	let card = allCardsData[i];
- 	output += "VALUES (" + card.id + ",";
- 	output += card.power + ",";
- 	output += "'" + card.name + "',";
- 	output += "'" + card.src + "',";
- 	output += card.attributes[0] + ",";
- 	output += card.attributes[1] + ",";
- 	output += card.attributes[2] + ",";
- 	output += card.attributes[3] + ",";
- 	output += "'" + card.element + "',";
- 	output += "'" + card.description + "')";
-
- 	if(i != allCardsData.length -1) {
- 		output += ", ";
- 	}
- }
- console.log(output);
-	//let bothHandsStats = drawCardsFromDeck(10, cardsDataByLevelMap.get(gameSettings.currentCardLevel));
 	let bothHandsStats = makeStarterDeck();
 	bothHandsStats = bothHandsStats.concat(makeStarterDeck());
 	let p1HandDomOutput = '';

@@ -1,0 +1,29 @@
+
+#inputContainer {
+	display: flex;
+	flex-direction: column;
+	width: 250px;
+	margin: 50px auto;
+}
+.one-input-container  {
+	margin-top: 6px;
+}
+.one-input-container label {
+	text-align: center;
+	width: 80px;
+	display: inline-block;
+}
+
+#inputContainer a {
+	margin-top: 24px;
+	text-align: center;
+	font-size: 0.8rem;
+}
+
+#inputContainer button {
+	padding: 8px 4px;
+width: 180px;
+margin: 0 auto;
+	margin-top: 6px;
+	background-color: lightgreen
+}
