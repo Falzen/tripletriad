@@ -1,5 +1,5 @@
 
-//stats :  top right left bottom
+//stats :  top right bottom left
 var allCardsData = [
 	{"id": 1, "power": 10, "src": "img/cards/card (02).png", "name": "Fungar", "attributes": [5, 1, 1, 3], "element": "N/A"}, 
 	{"id": 3, "power": 10, "src": "img/cards/card (04).png", "name": "RedBat", "attributes": [6, 1, 1, 2], "element": "N/A"}, 

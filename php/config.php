@@ -1,7 +1,7 @@
 <?php
 	function getConn() {
 		try {
-			$db = new PDO('mysql:host=localhost;dbname=full_rpg;charset=utf8', 'root', '');
+			$db = new PDO('mysql:host=localhost;dbname=tripletriad;charset=utf8', 'root', '');
 			$db->setAttribute(PDO::ATTR_CASE, PDO::CASE_LOWER); // always lower case.
 			$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // errors will trigger exceptions.
 			return $db;
