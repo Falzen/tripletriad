@@ -47,6 +47,7 @@
 				<section id="myCards" class="menu-content">
 					<ul id="cardsList">
 					<?php
+					// TODO make a map, comme ça quand on a la list des Id des cartes par deck, on peut les récupérer facilement
 						$currentUserCards = getCurrentUserCards();
 		                foreach ($currentUserCards as $key => $value) {
 		                    echo '<li class="one-card">' 
@@ -67,13 +68,14 @@
 					<p>liste des decks</p>
 
 					<?php
-					$allDecksForCurrentUser = getCurrentUserDecks();
+						$allDecksForCurrentUser = getCurrentUserDecks();
 
 		                foreach ($allDecksForCurrentUser as $key => $value) {
+		                	// TODO quand currentUserCards sera une map, facile d'afficher les decks :)
 		                	echo $value->name . ' ' . $value->cards_ids;
 		                	$cardsIdInDeck = explode(',', $value->cards_ids);
-		                	var_dump($cardsIdInDeck);
 		                }
+
 					?>
 					<ul id="decksList">
 
