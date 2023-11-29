@@ -1,0 +1,247 @@
+
+
+
+
+
+
+
+#deckBuildingContainer {
+	display: block;
+	width: 80%;
+	margin: 20px auto;
+	text-align: center;
+	color: whitesmoke;
+}
+#availableCardsContainer {
+}
+#builtDeckContainer {
+	margin-top: 50px;
+}
+
+#availableCards {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: start;
+}
+
+#builtDeck {
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: center;
+}
+
+#availableCards li,
+#builtDeck li {
+	display: block;
+	margin: 6px;
+	box-shadow: 0 0 0 2px red;
+	background-color: #00ff0088;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+#gameContainer {
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: space-between;
+	background-color: #2f2f2f;
+	width: 890px;
+	height: 680px;
+	margin: 20px auto;
+}
+
+.hand {
+	height: 600px;
+	width: 200px;
+	/*background-color: lightgreen;*/
+}
+.hand-container {
+	display: flex;
+	flex-flow: column;
+    width: 133px;
+    height: 430px;
+    margin: 5px auto;
+}
+.one-card {
+	width: 133px;
+	height: 133px;
+	border: 1px solid black;
+	margin: 1px;
+	margin-bottom: -75px;
+	transition: all 0.2s ease;
+}
+.hand .one-card:not(.is-not-selected):hover {
+	margin-bottom: -5px;
+	box-shadow: 0 -5px 12px 0px rgba(0,0,0,0.4);
+}
+
+.hand .one-card.is-selected {
+	margin: 8px 0px;
+	box-shadow: 0 -5px 18px 0px rgba(218, 65, 32, 0.8);
+}
+
+.one-card.p1 {
+	background-color: aquamarine;
+}
+.one-card.p2 {
+	background-color: pink;
+}
+
+
+#battlefieldContainer {
+	/*background-color: darkblue;*/
+	width: 440px;
+}
+
+#battlefield {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+}
+
+#battlefield li {
+	width: 133px;
+	height: 133px;
+	margin: 1px;
+}
+li.fake-card {
+	background-color: rgba(255,255,255,0.2);
+}
+li.fake-card:hover {
+	box-shadow: 0 0 2px 0px rgba(0,0,0,0.7);
+}
+
+
+.stats-container {
+	width: 45px;
+	/*height: 55px;*/
+	/*background-color: white;*/
+    font-size: 16px;
+    margin: 8px 4px;
+    color: white;
+    text-shadow: 2px 0 5px black;
+}
+
+.top, .left, .right, .bottom {
+	font-size: 16px;
+	text-align: center;
+	width: 25px;
+	margin: 0 auto;
+	font-weight: bold;
+	line-height: 12px;
+}
+
+.top {
+    margin-top: 3px;
+}
+
+.middle {
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: space-between;	
+    margin: 2px 0;
+}
+
+.my-turn {
+	text-align: center;
+	font-size: 25px;
+	width: 75%;
+	margin: 0 auto;
+	padding: 18px;
+	color: green;
+	font-weight: bold;
+	/*background-color: whitesmoke;*/
+	box-shadow: 0 0 12px 1px white;
+	transition: transform 0.5s ease;
+}
+
+.nope .my-turn {
+	transform: rotateX(89deg);
+}
+
+
+.nope {
+	filter: brightness(0.4);
+}
+
+
+
+
+#endGameModal {
+	position: absolute;
+	display: block;
+	top: 70px;
+	left: calc(50% - 300px);
+	width: 600px;
+	height: 400px;
+	padding: 80px;
+	background-color: rgba(0,0,0,0.85);
+	z-index: 9000;
+	transition: all 0.75s ease;
+}
+#endGameModal.hiddenPosition {
+	top: -500px;
+}
+
+#endGameModal h1 {
+	text-align: center;
+	color: white;
+	margin-bottom: 64px;
+}
+
+#endGameBtns {
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: space-between;
+}
+
+#endGameBtns button {
+	padding: 18px 54px;
+	letter-spacing: 2px;
+	color: white;
+	font-weight: bold;
+}
+
+#fuckBtn {
+	background-color: darkred;
+	color: white;
+	font-weight: bold;
+	z-index: 9010
+}
+#replayBtn {
+	background-color: green;
+	z-index: 9010
+}
+
+
+@keyframes taunting {
+  0%   { margin-top: 0; }
+  100% { margin-top: -50px; }
+}
+
+.tauntPopup {
+	position: absolute;
+	top: 45%;
+	left: 26%;
+	width: 160px;
+	padding: 24px;
+	text-align: center;
+	background-color: rgb(255,184,28);
+	color: rgb(55,58,54);
+	font-weight: bold;
+	box-shadow: -15px 25px 10px 0px rgba(0,0,0,0.45);
+	border-radius: 7px;
+	z-index: 9001;
+	animation: taunting 2s;
+}
+

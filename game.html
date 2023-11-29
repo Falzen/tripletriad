@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>items</title>
+	<link rel="stylesheet" href="css/basicstyle.css">
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="mainContainer">
+	<!-- = = = = = = = = = = = = = = = = = =  -->
+	<!-- = = = = = = = = = = = = = = = = = =  -->
+	<!-- Rivets examples -->
+	<!-- <div rv-if="settings.showById.townNavigation">
+	</div>
+
+	<table>
+		<tr rv-each-it="player.backpack" >
+			<td>{ it.name }</td>
+			<td rv-if="it.isEquipment">
+				<button rv-on-click="it.toggleEquipment">equip</button>
+			</td>
+		</tr>
+	</table> -->
+	<!-- = = = = = = = = = = = = = = = = = =  -->
+	<!-- = = = = = = = = = = = = = = = = = =  -->
+
+	<div id="pageContainer">
+		<!-- <div id="deckBuildingContainer">
+			<div id="availableCardsContainer">
+				<h1>Cartes débloquées</h1>
+				<ul id="availableCards">
+					<li class="one-card p1" data-cardid="1" style="background-image: url('img/cards/card (02).png'); background-size: contain;"><div class="stats-container"><div class="top">5</div><div class="middle"><div class="left">1</div><div class="right">1</div></div><div class="bottom">3</div></div></li><li class="one-card p1" data-cardid="3" style="background-image: url('img/cards/card (09).png'); background-size: contain;"><div class="stats-container"><div class="top">2</div><div class="middle"><div class="left">6</div><div class="right">1</div></div><div class="bottom">1</div></div></li><li class="one-card p1" data-cardid="5" style="background-image: url('img/cards/card (05).png'); background-size: contain;"><div class="stats-container"><div class="top">2</div><div class="middle"><div class="left">1</div><div class="right">3</div></div><div class="bottom">5</div></div></li><li class="one-card p1" data-cardid="7" style="background-image: url('img/cards/card (04).png'); background-size: contain;"><div class="stats-container"><div class="top">6</div><div class="middle"><div class="left">1</div><div class="right">1</div></div><div class="bottom">2</div></div></li><li class="one-card p1" data-cardid="9" style="background-image: url('img/cards/card (01).png'); background-size: contain;"><div class="stats-container"><div class="top">1</div><div class="middle"><div class="left">5</div><div class="right">4</div></div><div class="bottom">1</div></div></li><li class="one-card p1" data-cardid="1" style="background-image: url('img/cards/card (02).png'); background-size: contain;"><div class="stats-container"><div class="top">5</div><div class="middle"><div class="left">1</div><div class="right">1</div></div><div class="bottom">3</div></div></li><li class="one-card p1" data-cardid="3" style="background-image: url('img/cards/card (09).png'); background-size: contain;"><div class="stats-container"><div class="top">2</div><div class="middle"><div class="left">6</div><div class="right">1</div></div><div class="bottom">1</div></div></li><li class="one-card p1" data-cardid="5" style="background-image: url('img/cards/card (05).png'); background-size: contain;"><div class="stats-container"><div class="top">2</div><div class="middle"><div class="left">1</div><div class="right">3</div></div><div class="bottom">5</div></div></li><li class="one-card p1" data-cardid="7" style="background-image: url('img/cards/card (04).png'); background-size: contain;"><div class="stats-container"><div class="top">6</div><div class="middle"><div class="left">1</div><div class="right">1</div></div><div class="bottom">2</div></div></li><li class="one-card p1" data-cardid="9" style="background-image: url('img/cards/card (01).png'); background-size: contain;"><div class="stats-container"><div class="top">1</div><div class="middle"><div class="left">5</div><div class="right">4</div></div><div class="bottom">1</div></div></li><li class="one-card p1" data-cardid="1" style="background-image: url('img/cards/card (02).png'); background-size: contain;"><div class="stats-container"><div class="top">5</div><div class="middle"><div class="left">1</div><div class="right">1</div></div><div class="bottom">3</div></div></li><li class="one-card p1" data-cardid="3" style="background-image: url('img/cards/card (09).png'); background-size: contain;"><div class="stats-container"><div class="top">2</div><div class="middle"><div class="left">6</div><div class="right">1</div></div><div class="bottom">1</div></div></li><li class="one-card p1" data-cardid="5" style="background-image: url('img/cards/card (05).png'); background-size: contain;"><div class="stats-container"><div class="top">2</div><div class="middle"><div class="left">1</div><div class="right">3</div></div><div class="bottom">5</div></div></li><li class="one-card p1" data-cardid="7" style="background-image: url('img/cards/card (04).png'); background-size: contain;"><div class="stats-container"><div class="top">6</div><div class="middle"><div class="left">1</div><div class="right">1</div></div><div class="bottom">2</div></div></li><li class="one-card p1" data-cardid="9" style="background-image: url('img/cards/card (01).png'); background-size: contain;"><div class="stats-container"><div class="top">1</div><div class="middle"><div class="left">5</div><div class="right">4</div></div><div class="bottom">1</div></div></li>
+				</ul>
+				<button id="makeRandomDeck" onclick="makeRandomDeck()">make random deck</button>
+			</div>
+			<div id="builtDeckContainer">
+				<h1>Votre deck</h1>
+				 <ul id="builtDeck">
+				 	<li class="one-card p1" data-cardid="1" style="background-image: url('img/cards/card (02).png'); background-size: contain;"><div class="stats-container"><div class="top">5</div><div class="middle"><div class="left">1</div><div class="right">1</div></div><div class="bottom">3</div></div></li><li class="one-card p1" data-cardid="3" style="background-image: url('img/cards/card (09).png'); background-size: contain;"><div class="stats-container"><div class="top">2</div><div class="middle"><div class="left">6</div><div class="right">1</div></div><div class="bottom">1</div></div></li><li class="one-card p1" data-cardid="5" style="background-image: url('img/cards/card (05).png'); background-size: contain;"><div class="stats-container"><div class="top">2</div><div class="middle"><div class="left">1</div><div class="right">3</div></div><div class="bottom">5</div></div></li><li class="one-card p1" data-cardid="7" style="background-image: url('img/cards/card (04).png'); background-size: contain;"><div class="stats-container"><div class="top">6</div><div class="middle"><div class="left">1</div><div class="right">1</div></div><div class="bottom">2</div></div></li><li class="one-card p1" data-cardid="9" style="background-image: url('img/cards/card (01).png'); background-size: contain;"><div class="stats-container"><div class="top">1</div><div class="middle"><div class="left">5</div><div class="right">4</div></div><div class="bottom">1</div></div></li>
+				 </ul>
+			 </div>
+		</div> -->
+
+		<div id="gameContainer">
+			<div id="p1Hand" class="hand">
+				<ul class="hand-container"></ul>
+				<div rv-if="frontSettings.isPlayer1Turn" class="my-turn p1">my turn</div>
+			</div>
+
+			<div id="battlefieldContainer">
+				<ul id="battlefield">
+				</ul>
+			</div>
+
+			<div id="p2Hand" class="hand">
+				<ul class="hand-container"></ul>
+				<div rv-if="frontSettings.isPlayer2Turn" class="my-turn p2">my turn</div>
+			</div>
+
+		</div> <!-- end #gameContainer -->
+
+		<div id="endGameModal" class="modal hiddenPosition">
+			<h1><span id="winnerName">Player X</span> wins !</h1>
+			<div id="endGameBtns">
+				<button id="fuckBtn">FUUUCK!!</button>
+				<button id="replayBtn">Rejouer</button>
+			</div>
+		</div>
+	</div> <!-- end #pageContainer -->
+
+</div> <!-- end #mainContainer -->
+
+
+<!-- jquery -->
+<script	src="js/utils/jquery.js"></script>
+<script	src="js/utils.js"></script>
+<script	src="js/allCardsData.js"></script>
+<script	src="js/main.js"></script>
+
+</body>
+</html>
