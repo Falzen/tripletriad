@@ -13,11 +13,11 @@ AMELIO
 
 */
 
-var isCardSelected = false;
 var selectedCard;
 var allCardsInPlay = []; // filled in makeHandsCards()
 var allCardsInPlayById = new Map(); // filled in makeHandsCards()
 var gameSettings = {
+	isCardSelected: false,
     currentTurnNb: 1,
     lastTurnNb: 9,
     currentCardLevel: '1',
@@ -71,14 +71,15 @@ function onCardClick(event) {
 	selectedCard = event.currentTarget;
 	$(this).parent().children('li').removeClass('is-selected').addClass('is-not-selected');
 	$(this).addClass('is-selected');
-	isCardSelected = true;
+	gameSettings.isCardSelected = true;
 }
 
 function onFakeCardClick(event) {
 	console.log(event);
-    if(!isCardSelected) {
+    if(!gameSettings.isCardSelected) {
 		return;
 	}
+	gameSettings.isCardSelected = !gameSettings.isCardSelected;
 	handleCardPlay(selectedCard, $(this)[0]);
 }
 
