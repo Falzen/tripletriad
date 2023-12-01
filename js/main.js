@@ -29,10 +29,10 @@ var cardIdCpt = 0;
 
 
 $(document).ready(function() {
-	let output = '';
-	for (var i = 0; i < allCardsData.length; i++) {
-		output += allCardsData[i].name + " : " + allCardsData[i].attributes.reduce((a, b) => a + b, 0) + "\n";
-	}
+	// let output = '';
+	// for (var i = 0; i < allCardsData.length; i++) {
+	// 	output += allCardsData[i].name + " : " + allCardsData[i].attributes.reduce((a, b) => a + b, 0) + "\n";
+	// }
 	init();
 });
 
@@ -56,16 +56,19 @@ function bindEvents() {
     $('.hand:not(.nope) .one-card').click(onCardClick);
     $('.fake-card').click(onFakeCardClick);
     $('#replayBtn').click(restartGame);
-    $('#fuckBtn').on('click', function() { makeTauntPopups(10); });
+    $('#fuckBtn').on('click', function() { makeTauntPopups(200); });
     $('#p2Hand').addClass('nope');
 }
 
 function onCardClick(event) {
+	console.log('onCardClick);')
     //$('#endGameModal').removeClass('hiddenPosition');
     let whosTurnIsIt = gameSettings.isPlayer1Turn ? 'p1' : 'p2';
     if (!$(this).hasClass(whosTurnIsIt)) { return; }
 	if ($(this).hasClass('is-selected')) {
 		$(this).removeClass('is-selected');
+		selectedCard = null;
+		gameSettings.isCardSelected = false;
 		return;
 	}
 	selectedCard = event.currentTarget;
@@ -75,7 +78,6 @@ function onCardClick(event) {
 }
 
 function onFakeCardClick(event) {
-	console.log(event);
     if(!gameSettings.isCardSelected) {
 		return;
 	}
@@ -85,7 +87,21 @@ function onFakeCardClick(event) {
 
 function restartGame() {
     // does NOT create an entry in the browser history
-	window.location.replace(window.location.pathname + window.location.search + window.location.hash);
+	// window.location.replace(window.location.pathname + window.location.search + window.location.hash);
+	resetGame();
+}
+function resetGame() {
+    $('#winnerName').text('');
+    $('#endGameModal').addClass('hiddenPosition');
+    gameSettings.currentTurnNb = 1;
+    gameSettings.isCardSelected = false;
+	gameSettings.isPlayer1Turn = true;
+	gameSettings.isPlayer2Turn = false;
+	prepareBattlefield();
+	makeHandsCards();
+	$('#p1Hand').removeClass('nope');
+	$('#p2Hand').removeClass('nope');
+	bindEvents();
 }
 function prepareBattlefield() {
 	let output = `<li id="0_0" class="fake-card"></li>
@@ -199,7 +215,6 @@ function handleCardPlay(selectedCard, emptySpot) {
 function updateGameTurn() {
     gameSettings.isPlayer1Turn = !gameSettings.isPlayer1Turn;
     gameSettings.isPlayer2Turn = !gameSettings.isPlayer2Turn;
-    console.log('gameSettings : ', gameSettings);
     updateTurnDisplay();
 }
 
@@ -324,7 +339,6 @@ function injectOneTauntPopup(identifier) {
 function makeRandomDeck() {
 	let tempList = [];
 	for (var i = 0; i < 5; i++) {
-		console.log(allCardsData[i]);
 		tempList.push(makeOneCardDom(prepareCardData(allCardsData[i]), 'p1'));
 	}
 	$('#builtDeck').html(tempList);
