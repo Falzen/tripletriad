@@ -17,15 +17,44 @@ var selectedCard;
 var allCardsInPlay = []; // filled in makeHandsCards()
 var allCardsInPlayById = new Map(); // filled in makeHandsCards()
 var gameSettings = {
+	grid: {
+		h: 4,
+		w: 4
+	},
+	handSize: 5,
 	isCardSelected: false,
     currentTurnNb: 1,
-    lastTurnNb: 9,
+    lastTurnNb: 5,
     currentCardLevel: '1',
     isPlayer1Turn: true,
     isPlayer2Turn: false
 };
+gameSettings.lastTurnNb = gameSettings.handSize*2;
 
 var cardIdCpt = 0;
+
+var isLastTurn = ()=> {
+	let player_p1CardsNb = $('#battlefield .p1').length;
+	let player_p2CardsNb = $('#battlefield .p2').length;
+	console.log('gameSettings.currentTurnNb : ', gameSettings.currentTurnNb);
+	console.log('gameSettings.lastTurnNb : ', gameSettings.lastTurnNb);
+	console.log('player_p1CardsNb : ', player_p1CardsNb);
+	console.log('player_p2CardsNb : ', player_p2CardsNb);
+	console.log((gameSettings.currentTurnNb == gameSettings.lastTurnNb
+		|| (player_p1CardsNb == 0 && player_p2CardsNb == 0)));
+	
+	return (gameSettings.currentTurnNb == gameSettings.lastTurnNb
+			|| (player_p1CardsNb == 0 && player_p2CardsNb == 0));
+}
+
+
+
+
+
+
+
+
+
 
 
 $(document).ready(function() {
@@ -75,7 +104,6 @@ function onCardClick(event) {
 }
 
 function onFakeCardClick(event) {
-	console.log(event);
     if(!gameSettings.isCardSelected) {
 		return;
 	}
@@ -88,19 +116,24 @@ function restartGame() {
 	window.location.replace(window.location.pathname + window.location.search + window.location.hash);
 }
 function prepareBattlefield() {
-	let output = `<li id="0_0" class="fake-card"></li>
-		<li id="0_1" class="fake-card"></li>
-		<li id="0_2" class="fake-card"></li>
-		<li id="1_0" class="fake-card"></li>
-		<li id="1_1" class="fake-card"></li>
-		<li id="1_2" class="fake-card"></li>
-		<li id="2_0" class="fake-card"></li>
-		<li id="2_1" class="fake-card"></li>
-		<li id="2_2" class="fake-card"></li>`;
 
+	let output = '';
+	for(let i=0; i<gameSettings.grid.h; i++) {
+		for(let j=0; j<gameSettings.grid.h; j++) {
+			output += `<li id="${i}_${j}" class="fake-card"></li>`;
+		}
+	}
 	$('ul#battlefield').html(output);
 }
 
+
+function makeStarterDeck() {
+	let tempList = [];
+	for (var i = 0; i < gameSettings.handSize; i++) {
+		tempList.push(allCardsData[i]);
+	}
+	return tempList;
+}
 
 function makeHandsCards() {
 
@@ -185,7 +218,7 @@ function handleCardPlay(selectedCard, emptySpot) {
 	// check for battle
 	checkForBattle(selectedCard, idsToCheck);
 
-	if(gameSettings.currentTurnNb == gameSettings.lastTurnNb) {
+	if(isLastTurn()) {
 		handleEndOfGame();
 	} else {
 		gameSettings.currentTurnNb++;
@@ -193,22 +226,23 @@ function handleCardPlay(selectedCard, emptySpot) {
 
 	// next player's turn
 	updateGameTurn();
-
 }
 
 function updateGameTurn() {
     gameSettings.isPlayer1Turn = !gameSettings.isPlayer1Turn;
     gameSettings.isPlayer2Turn = !gameSettings.isPlayer2Turn;
-    console.log('gameSettings : ', gameSettings);
     updateTurnDisplay();
 }
 
 function handleEndOfGame() {
     let player_p1CardsNb = $('#battlefield .p1').length;
     let player_p2CardsNb = $('#battlefield .p2').length;
-    let winnerName = player_p1CardsNb > player_p2CardsNb ? 'Player 1' : 'Player 2';
+    let endGameMessage = 
+		player_p1CardsNb > player_p2CardsNb ? 'Player 1 wins !' : 
+		player_p1CardsNb < player_p2CardsNb ? 'Player 2 wins !' : 
+		'Draw :/';
 
-    $('#winnerName').text(winnerName);
+    $('#endGameMessage').text(endGameMessage);
     $('#endGameModal').removeClass('hiddenPosition');
 }
 
@@ -280,13 +314,13 @@ function getAdjacentCoordinates(card) {
 		idsToCheck.push(null);
 	}
 	// if not on the right row, check cell on the right
-	if(xOrigin != 2) {
+	if(xOrigin != (gameSettings.grid.w - 1)) {
 		idsToCheck.push('#' + yOrigin + '_' + (xOrigin+1));
 	} else {
 		idsToCheck.push(null);
 	}
 	// if not on bottom row, check lower cell
-	if(yOrigin != 2) {
+	if(yOrigin != (gameSettings.grid.h - 1)) {
 		idsToCheck.push('#' + (yOrigin+1) + '_' + xOrigin);
 	} else {
 		idsToCheck.push(null);
@@ -317,19 +351,5 @@ function injectOneTauntPopup(identifier) {
 	setTimeout(function() {
 		$('#'+identifier).remove();
 	}, 750);
-
-}
-
-
-function makeRandomDeck() {
-	let tempList = [];
-	for (var i = 0; i < 5; i++) {
-		console.log(allCardsData[i]);
-		tempList.push(makeOneCardDom(prepareCardData(allCardsData[i]), 'p1'));
-	}
-	$('#builtDeck').html(tempList);
-}
-
-function addCardToHand(hand, card) {
 
 }

@@ -3,6 +3,11 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+
+function randomBetween(min, max) {
+	return Math.floor(Math.random()*(max-min+1)+min);
+}
+
 function makeMapByAttrFromList(list, attrName) {
 	if(!attrName) {
 		attrName = 'name';
@@ -27,47 +32,8 @@ function makeMapByAttrFromList(list, attrName) {
 
 
 
-function randombetween(min, max) {
-	return Math.floor(Math.random()*(max-min+1)+min);
-}
-function makeStarterDeck() {
-	let tempList = [];
-	for (var i = 0; i < 5; i++) {
-		tempList.push(allCardsData[i]);
-	}
-	return tempList;
-}
 
 
-
-
-/*
-function generateCardStatsList(nb) {
-	let statsList = [];
-	for (var i = 0; i < nb; i++) {
-		statsList.push(generateCardStats());
-	}
-	return statsList;
-}
-
-var max = 14;
-var count = 4;
-
-function generateCardStats() {
-	var r1 = randombetween(1, max-3);
-	var r2 = randombetween(1, max-2-r1);
-	var r3 = randombetween(1, max-1-r1-r2);
-	var r4 = max - r1 - r2 - r3;
-	var r = [];
-	var currsum = 0;
-	for(var i=0; i<count-1; i++) {
-	 r[i] = randombetween(1, max-(count-i-1)-currsum);
-	 currsum += r[i];
-	}
-	r[count-1] = max - currsum;
-	return r;
-}
-*/
 
 
 
@@ -130,41 +96,3 @@ function roll(d) {
 	return getRandomInt(1, d);
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*  debug  */
-function printAllCardsDBinsertion() {
-	let output = "INSERT INTO `cards` (`id`, `power`, `name`, `img_src`, `stat_top`, `stat_right`, `stat_bottom`, `stat_left`, `element`, `description`) VALUES ";
-
-	for(let i=0; i<allCardsData.length; i++) {
-		let card = allCardsData[i];
-		output += "(" + card.id + ",";
-		output += card.power + ",";
-		output += "'" + card.name + "',";
-		output += "'" + card.src + "',";
-		output += card.attributes[0] + ",";
-		output += card.attributes[1] + ",";
-		output += card.attributes[2] + ",";
-		output += card.attributes[3] + ",";
-		output += "'" + card.element + "',";
-		output += "'" + card.description + "')";
-
-		if(i != allCardsData.length -1) {
-			output += ", ";
-		}
-	}
-	console.log(output);
-}
